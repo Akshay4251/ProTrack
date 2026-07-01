@@ -98,7 +98,7 @@ export default function Home() {
             width: "300px",
             height: "300px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(99,102,241,0.15), transparent)",
+            background: "radial-gradient(circle, rgba(6,182,212,0.15), transparent)",
             filter: "blur(60px)",
             pointerEvents: "none",
           }}
@@ -116,7 +116,7 @@ export default function Home() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 0 24px rgba(99, 102, 241, 0.3)",
+                boxShadow: "0 0 24px rgba(6, 182, 212, 0.35)",
               }}
             >
               <Zap size={28} color="white" />
@@ -195,7 +195,7 @@ export default function Home() {
                       width: "40px",
                       height: "40px",
                       borderRadius: "var(--radius-sm)",
-                      background: "rgba(99,102,241,0.1)",
+                      background: "rgba(6, 182, 212, 0.12)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -235,7 +235,7 @@ export default function Home() {
             width: "250px",
             height: "250px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(139,92,246,0.12), transparent)",
+            background: "radial-gradient(circle, rgba(16,185,129,0.12), transparent)",
             filter: "blur(50px)",
             pointerEvents: "none",
           }}

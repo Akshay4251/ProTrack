@@ -12,6 +12,7 @@ import type { Task } from "@/components/TaskCard";
 import type { AnalysisResult } from "@/lib/ai";
 import { getGreeting } from "@/lib/utils";
 import { useToast } from "@/components/Toast";
+import { seedUserData } from "@/lib/seed";
 import {
   CheckSquare,
   Clock,
@@ -31,11 +32,17 @@ export default function DashboardOverview() {
   const [aiLoading, setAiLoading] = useState(false);
 
   useEffect(() => {
-    fetchTasks();
+    if (user) {
+      fetchTasks();
+    }
   }, [user]);
 
   const fetchTasks = async () => {
     if (!user) return;
+    
+    // Seed initial data for a first-time user
+    const seeded = await seedUserData(user.id);
+    
     const { data, error } = await supabase
       .from("tasks")
       .select("*")
@@ -46,6 +53,9 @@ export default function DashboardOverview() {
       showToast("Failed to load tasks", "error");
     } else {
       setTasks(data || []);
+      if (seeded) {
+        showToast("Welcome to ProTrack! Seeded template tasks for you.", "success");
+      }
     }
     setLoading(false);
   };
