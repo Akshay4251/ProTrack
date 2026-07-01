@@ -37,7 +37,7 @@ export default function AnalyticsPage() {
       .from("tasks")
       .select("*")
       .eq("user_id", user.id);
-    if (error) showToast("Failed to load tasks", "error");
+    if (error) showToast(`Failed to load tasks: ${error.message} (${error.code})`, "error");
     else setTasks(data || []);
     setLoading(false);
   };
@@ -55,11 +55,13 @@ export default function AnalyticsPage() {
           streakDays: 0,
         }),
       });
-      if (!res.ok) throw new Error();
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to load recommendations");
+      }
       setAiRecs(data);
-    } catch {
-      showToast("Failed to get recommendations", "error");
+    } catch (err: any) {
+      showToast(`Failed to get recommendations: ${err.message}`, "error");
     }
     setRecsLoading(false);
   };

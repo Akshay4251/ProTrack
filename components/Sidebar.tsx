@@ -12,7 +12,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Zap,
+  Layers,
 } from "lucide-react";
 
 const navItems = [
@@ -76,10 +76,10 @@ export default function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
             alignItems: "center",
             justifyContent: "center",
             flexShrink: 0,
-            boxShadow: "0 0 16px rgba(6, 182, 212, 0.35)",
+            boxShadow: "0 0 16px rgba(217, 119, 6, 0.35)",
           }}
         >
-          <Zap size={20} color="white" />
+          <Layers size={20} color="white" />
         </div>
         {!collapsed && (
           <span

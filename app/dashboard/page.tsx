@@ -50,7 +50,7 @@ export default function DashboardOverview() {
       .order("deadline", { ascending: true });
 
     if (error) {
-      showToast("Failed to load tasks", "error");
+      showToast(`Failed to load tasks: ${error.message} (${error.code})`, "error");
     } else {
       setTasks(data || []);
       if (seeded) {
@@ -69,12 +69,14 @@ export default function DashboardOverview() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tasks }),
       });
-      if (!res.ok) throw new Error("Analysis failed");
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Analysis failed");
+      }
       setAiResult(data);
       showToast("AI analysis complete!", "success");
-    } catch {
-      showToast("AI analysis failed. Try again.", "error");
+    } catch (err: any) {
+      showToast(`AI analysis failed: ${err.message}`, "error");
     }
     setAiLoading(false);
   };

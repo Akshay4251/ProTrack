@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
 import { useToast } from "@/components/Toast";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { Zap, Shield, Brain, Clock, ChevronRight } from "lucide-react";
+import { Layers, Shield, Brain, Clock, ChevronRight } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
@@ -116,10 +116,10 @@ export default function Home() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 0 24px rgba(6, 182, 212, 0.35)",
+                boxShadow: "0 0 24px rgba(217, 119, 6, 0.35)",
               }}
             >
-              <Zap size={28} color="white" />
+              <Layers size={28} color="white" />
             </div>
             <span
               style={{

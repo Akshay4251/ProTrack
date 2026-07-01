@@ -40,23 +40,31 @@ export default function GoalsPage() {
 
   const fetchGoals = async () => {
     if (!user) return;
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("goals")
       .select("*")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
-    setGoals(data || []);
+    if (error) {
+      showToast(`Failed to load goals: ${error.message} (${error.code})`, "error");
+    } else {
+      setGoals(data || []);
+    }
     setLoading(false);
   };
 
   const fetchHabits = async () => {
     if (!user) return;
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("habits")
       .select("*")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
-    setHabits(data || []);
+    if (error) {
+      showToast(`Failed to load habits: ${error.message} (${error.code})`, "error");
+    } else {
+      setHabits(data || []);
+    }
     setLoading(false);
   };
 

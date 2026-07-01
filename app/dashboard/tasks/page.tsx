@@ -37,7 +37,7 @@ export default function TasksPage() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      showToast("Failed to load tasks", "error");
+      showToast(`Failed to load tasks: ${error.message} (${error.code})`, "error");
     } else {
       setTasks(data || []);
     }

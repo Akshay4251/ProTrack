@@ -41,7 +41,7 @@ export default function CalendarPage() {
       .eq("user_id", user.id);
 
     if (error) {
-      showToast("Failed to load tasks", "error");
+      showToast(`Failed to load tasks: ${error.message} (${error.code})`, "error");
     } else {
       setTasks(data || []);
     }
